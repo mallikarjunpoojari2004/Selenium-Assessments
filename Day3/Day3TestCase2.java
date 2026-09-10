@@ -10,27 +10,19 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class Day3TestCase2 {
 
 	public static void main(String[] args) throws InterruptedException {
-		WebDriver driver=new ChromeDriver();
+	WebDriver driver=new ChromeDriver();
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		driver.get("https://demoapps.qspiders.com/ui/datePick?sublist=0");
-		
-		driver.findElement(By.cssSelector("[type='text']")).click();
-		
-		// Find the element whose type is button and click it
-		// This will open the date picker/calendar
-		driver.findElement(By.cssSelector("[type='button']")).click();
-		
-		// Find the element whose role is option and click it
-		// This selects the required date option
-		driver.findElement(By.cssSelector("[role='option']")).click();
-		
-		WebElement result=  driver.findElement(By.cssSelector("[type='text']"));
-		Thread.sleep(2000);
-		
+		 //click on calender
+		driver.findElement(By.cssSelector("[type='text']")).click(); 
+		//For selecting next month
+		driver.findElement(By.cssSelector("[aria-label='Next Month']")).click(); 
+		//For selecting date
+		driver.findElement(By.cssSelector("[aria-label='Choose Friday, October 2nd, 2026']")).click(); 
+		WebElement result=  driver.findElement(By.cssSelector("[type='text']"));  
 		result.getDomAttribute("value");
-		
-		if(result.getDomAttribute("value").contains("26/07/2026")) {
+		if(result.getDomAttribute("value").contains("02/10/2026")) {
 			System.out.println("Date is displayed Correctly");
 			
 		}else {
